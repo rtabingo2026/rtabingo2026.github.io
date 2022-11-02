@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+        <title>Rubik's Cube - Puzzle Me This</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="../stylesheet.css">
+	</head>
+	<body>
+		<div id="header">Puzzle Me This</div>
+        <ul id="navbar">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../author.html">About</a></li>
+            <li><a href="../combination/index.html">Combination Puzzles</a></li>
+            <li><a href="../logic/index.html">Logic Puzzles</a></li>
+        </ul>
+		<div class="info">
+            <img src="rubiks/rubiks.jpg" width="170" height="170">
+            <p class="name">Rubik's Cube <span class="others">(or "Magic Cube", "3x3")</span></p>
+            <p class="creator">Erno Rubik</p>
+            <p class="online"><a href="https://ruwix.com/online-puzzle-simulators/">Online Version</a></p>
+        </div>
+        <p>The Rubik's Cube is one of the first twisty puzzles to be created. It has 6 colors for its 6 sides, which must be joined together. However, it is best to think of the Rubik's Cube not by its sides, but its pieces. It has 12 edge pieces (which have 2 colors), 8 corner pieces (which have 3 colors), and 6 centers (which have 1 color) which don't move.</p>
+        <p>There are many methods to solve it. The three fastest and most popular methods are CFOP/Fridrich, Roux, and ZZ. However, these methods rely on many algorithms, most of which were found through trial and error. The method shown in this page is not very fast, but it is a method that someone might think of naturally.</p>
+        <h1>Notation</h1>
+        <p>
+            If you're going to keep notes or communicate something about the Rubik's Cube, you're going to need a way to write turns as text. This is the most used notation:
+            <br>
+            A letter is used to notate a kind of turn. Just the letter itself (X) means do the turn clockwise. Adding an apostrophe (X') means do the turn counterclockwise. Adding a 2 (X2) means do the turn twice.
+            <br>
+            Side turns:
+            <ul>
+                <li>U - <strong>U</strong>p/Top side</li>
+                <li>D - <strong>D</strong>own/Bottom side</li>
+                <li>L - <strong>L</strong>eft side</li>
+                <li>R - <strong>R</strong>ight side</li>
+                <li>F - <strong>F</strong>ront side</li>
+                <li>B - <strong>B</strong>ack side</li>
+            </ul>
+            Slice turns:
+            <ul>
+                <li>M - <strong>M</strong>iddle slice between R and L side (clockwise looking at L)</li>
+                <li>E - <strong>E</strong>quator slice between U and D side (clockwise looking at D)</li>
+                <li>S - Middle <strong>S</strong>lice between F and B side (clockwise looking at F)</li>
+            </ul>
+        </p>
+        <h1>The Method</h1>
+        <div class="strategy">
+            <img src="rubiks/3e3c.png">
+            <h2>Step 1. 3 white edges, 3 white corners</h2>
+            <p>This can be done in multiple ways, however the most intuitive way is to do the corners first, then insert the edges by turning its appropriate layer, turning the E slice the correct way, then turning the layer back. It's difficult to describe in text, but with enough experience, it gets easier.</p>
+        </div>
+        <div class="strategy">
+            <img src="rubiks/yellowcorners.png">
+            <h2>Step 2. 3 yellow corners</h2>
+            <p>Let's ignore all the pieces except for the top layer and the DRF corner, and try to find an algorithm that swaps one of the top layer corners and the DRF corner without affecting anything in the top layer. With some thinking, you can come up with D' R' D R. This messes up the bottom layer, but if you repeat it enough times, it fixes the bottom layer.</p>
+            <p>In this step, you need to use this algorithm strategically. This is why step 1 only solves 3 corners instead of 4. The fourth corner is what we'll use to swap with the top layer.</p>
+            <p>If the white corner ends up being in the correct place, don't worry about it. Just do the swapping algorithm once.</p>
+            <p>The first corner can go anywhere. Make sure to position it with yellow facing upwards. Make sure the second and third corner is correct relative to the first corner. For the fourth corner, instead of putting it with yellow up, try to fix the bottom layer instead.</p>
+            <p>If the white corner ends up on the top layer, turn the U side once, treat it like the first corner, and restart. We can twist corners later, but not swap them.</p>
+        </div>
+        <div class="strategy">
+            <img src="rubiks/yellowedges.png">
+            <h2>Step 3. Yellow edges</h2>
+            <p>You can do this similarly to how you inserted the edges in Step 1. Be careful with the final yellow edge, you need to insert the white edge at the same time as you insert it.</p>
+            <p>Instead of inserting the yellow edge immediately, position it close to the white edge so that you can insert both at the same time. Don't worry if they're flipped, they can be fixed later.</p>
+        </div>
+        <div class="strategy">
+            <img src="rubiks/middleedges.png">
+            <h2>Step 4. Middle slice edges</h2>
+            <p>Turn a side twice to swap two of the middle slice edges, and don't worry, you'll flip them later. Make sure to only use one side to turn, and use E to move the edges you want to swap to that side.</p>
+        </div>
+        <div class="strategy">
+            <img src="rubiks/edgeflip.png">
+            <h2>Step 5. Flip edges</h2>
+            <p>Let's ignore all the pieces except for the top layer again, and try to find an algorithm that flips a single edge. You might come up with F E F2 E2 F. This messes up the rest of the pieces, however if you turn to another edge on the top layer and do the reverse of the algorithm (F' E2 F2 E' F'), it fixes all of them.</p>
+            <p>You can flip all the edges using this algorithm, going by pairs in the same layer. If you encounter two edges in different layers, move them to the same layer, then move it back after you flip them.</p>
+        </div>
+        <div class="strategy">
+            <img src="rubiks/cornertwist.png">
+            <h2>Step 6. Twist corners</h2>
+            <p>Simply position them in the same layer, then use the corner twisting algorithm like you did in step 3.</p>
+        </div>
+        <h1>FMC (Fewest Moves)</h1>
+        <p>Apart from speedsolving, there is also a competition for who can solve a scramble in the fewest moves. Everyone is given the same scramble, and they are given 1 hour to find a solution in as few moves as possible. It is completely different from trying to speedsolve it, and it has many complicated strategies used to minimize moves, such as NISS, skeletons and insertions, edge orientation, etc.</p>
+	</body>
+</html>

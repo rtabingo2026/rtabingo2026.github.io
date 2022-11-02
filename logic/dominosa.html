@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+        <title>Dominosa - Puzzle Me This</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="../stylesheet.css">
+	</head>
+	<body>
+		<div id="header">Puzzle Me This</div>
+        <ul id="navbar">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../author.html">About</a></li>
+            <li><a href="../combination/index.html">Combination Puzzles</a></li>
+            <li><a href="../logic/index.html">Logic Puzzles</a></li>
+        </ul>
+		<div class="info">
+            <img src="dominosa/dominosa.png">
+            <p class="name">Dominosa <span class="others">(or "Dominosa Omnibus", "Domino Hunt", "Solitaire Dominoes")</span></p>
+            <p class="creator">Widely credited to O. S. Adler</p>
+            <p class="online"><a href="https://dominosolver.com">Online Version</a> <span class="others">(Other Online Versions: <a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/js/dominosa.html">1</a>)</span></p>
+        </div>
+        <p>Dominosa is a puzzle where you have an arrangement of dominoes with only the numbers kept, edges being removed, and you must find the original arrangement of dominoes.</p>
+        <h1>Strategies</h1>
+        <p>Let's begin with a few simple ones.</p>
+        <div class="strategy">
+            <img src="dominosa/unique_pair.png" style="float: right;">
+            <h2>Unique Pair</h2>
+            <p>If there's only one place for a domino to go, that's the domino's place.</p>
+        </div>
+        <div class="strategy">
+            <img src="dominosa/covered_number.png" style="float: right;">
+            <h2>Covered Number</h2>
+            <p>If there's only one direction a domino can be placed, that's the domino's direction.</p>
+        </div>
+        <div class="strategy">
+            <img src="dominosa/unique_domino.png" style="float: right;">
+            <h2>Unique Domino</h2>
+            <p>If a domino already has a place, it can't be placed anywhere else.</p>
+        </div>
+        <p>These three simple strategies are usually enough to finish up to level 4, but to solve level 5 and above reliably, you'll need some slightly more advanced strategies.</p>
+        <div class="strategy">
+            <img src="dominosa/unique_pair_advanced.png" style="float: right;">
+            <h2>Unique Pair (advanced)</h2>
+            <p>If a domino has to be placed on a certain square, the square belongs to that domino.</p>
+        </div>
+        <div class="strategy">
+            <img src="dominosa/unique_domino_advanced.png" style="float: right;">
+            <h2>Unique Domino (advanced)</h2>
+            <p>If a square has to make a certain domino, the domino has to contain that square.</p>
+        </div>
+        <div class="strategy">
+            <img src="dominosa/2wide.png" style="float: right;">
+            <h2>2-wide spaces</h2>
+            <p>This is less of a strategy, and more of something to look for, but it still helps. Let's say you have something that is close to being a rectangle of size 2xn, but has a few holes. Try putting a domino between one of those holes, and check if it causes an impossible configuration. If it's impossible, then you can cover that hole.</p>
+        </div>
+        <div class="strategy">
+            <img src="dominosa/here_or_there.png" style="float: right;">
+            <h2>Here or There</h2>
+            <p>If there are two squares that can only make the same two dominoes, those two dominoes can only be in those locations. If it's unclear, think of naked pairs from Sudoku. The same thing can happen with three squares and three dominoes, but it is very rare, and will not be mentioned separately.</p>
+        </div>
+        <p>These strategies are usually enough to finish level 9. However, not all puzzles can be solved in this way, and you'll have to use trial and error at some point. The recommended online version of Dominosa linked above has a feature specifically designed for trial and error. Click on the flag to save your position, and return to it later with the arrow.</p>
+	</body>
+</html>

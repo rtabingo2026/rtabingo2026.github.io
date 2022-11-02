@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+        <title>Slitherlink - Puzzle Me This</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="../stylesheet.css">
+	</head>
+	<body>
+		<div id="header">Puzzle Me This</div>
+        <ul id="navbar">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../author.html">About</a></li>
+            <li><a href="../combination/index.html">Combination Puzzles</a></li>
+            <li><a href="../logic/index.html">Logic Puzzles</a></li>
+        </ul>
+		<div class="info">
+            <img src="slitherlink/slitherlink.png">
+            <p class="name">Slitherlink <span class="others">(or "Loopy")</span></p>
+            <p class="creator">Nikoli</p>
+            <p class="online"><a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/js/loopy.html">Online Version</a> <span class="others">(Other Online Versions: <a href="https://www.puzzle-loop.com/">1</a>)</span></p>
+        </div>
+        <p>In Slitherlink, you have a grid with numbers in each square, and dots as the corner of each square. Your goal is to place edges, each connecting two dots, to create a looping path. No loose ends, no branching or self-intersecting paths. The numbers represent how many edges of the square are filled in.</p>
+        <h1>Strategies</h1>
+        <p>Here are a few simple ones.</p>
+        <div class="strategy">
+            <img src="slitherlink/zeroes.png">
+            <h2>Start with Zeroes</h2>
+            <p>The solve usually always begins with removing possible edges near zeroes.</p>
+        </div>
+        <div class="strategy">
+            <img src="slitherlink/exactp.png">
+            <h2>Exact Possible</h2>
+            <p>If a square with number <var>n</var> has exactly <var>n</var> possible edges around it, they're all edges.</p>
+        </div>
+        <div class="strategy">
+            <img src="slitherlink/exactf.png">
+            <h2>Exact Filled</h2>
+            <p>If a square with number <var>n</var> has exactly <var>n</var> filled edges around it, no other possible edge is an edge.</p>
+        </div>
+        <div class="strategy">
+            <img src="slitherlink/extension.png">
+            <h2>Extension</h2>
+            <p>If a dot with one definite edge has exactly one other possible edge, the possible edge is an edge.</p>
+        </div>
+        <div class="strategy">
+            <img src="slitherlink/loose.png">
+            <h2>Loose Edges</h2>
+            <p>If there's no way for a possible edge to continue, it's not an edge.</p>
+        </div>
+        <div class="strategy">
+            <img src="slitherlink/branch.png">
+            <h2>Branching Edges</h2>
+            <p>If a possible edge connects with a dot that already has two edges, it's not an edge.</p>
+        </div>
+        <div class="strategy">
+            <img src="slitherlink/incomplete.png">
+            <h2>Incomplete Path</h2>
+            <p>If a possible edge would complete a path too small, and not including all of the numbers, then it's not an edge.</p>
+        </div>
+        <p>These can sometimes solve puzzles on their own, but to solve most puzzles, you'll need these slightly more advanced strategies:</p>
+        <div class="strategy">
+            <img src="slitherlink/threes.png">
+            <h2>Leading to a Three</h2>
+            <p>If an edge leads to a square with a 3 inside it, you can fill in the two edges that aren't connected to the edge. This one along with the previous ones are usually enough.</p>
+        </div>
+        <div class="strategy">
+            <img src="slitherlink/chain.png">
+            <h2>Three Chain</h2>
+            <p>If there are a line of threes, you can fill in the edges in between each of them, as well as the ends, and clear the edges above the edges in between each of them.</p>
+        </div>
+        <div class="strategy">
+            <img src="slitherlink/corner.png">
+            <h2>Three in a Corner</h2>
+            <p>If there's a three in a corner (i.e. only two possible edges in a dot), you can fill the edges of the corner.</p>
+        </div>
+	</body>
+</html>
