@@ -1,0 +1,74 @@
+body {
+	background-color: #F0E2B0;
+	font-family: Dosis;
+    text-align: justify;
+}
+#header {
+	background-color: #41AAF0;
+	border-radius: 10px;
+	padding: 10px;
+	text-align: center;
+	font-size: 50px;
+}
+#header img {
+	width: 64px;
+	height: 64px;
+	float: left;
+}
+#navbar {
+    border-radius: 10px;
+    list-style-type: none;
+    margin: 5px 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: #41AAF0;
+}
+#navbar li {
+    float: left;
+}
+#navbar a {
+    display: block;
+    font-size: 20px;
+    padding: 10px;
+}
+#navbar a:hover {
+    background-color: #3898E8;
+}
+.info {
+    margin-top: 10px;
+    margin-right: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #D6633A;
+    text-align: center;
+    float: left;
+}
+.info p {
+    margin: 0px 5px
+}
+.info .others {
+    font-size: 10px;
+}
+.strategy, .puzzle, .category {
+    margin: 5px;
+    border-radius: 10px;
+    background-color: #D6AC24;
+    overflow: auto;
+}
+.strategy h2, .strategy p, .puzzle h2, .puzzle p, .category h2, .category p {
+    margin: 10px;
+}
+.strategy img, .puzzle img, .category img {
+    margin: 7px;
+    float: right;
+}
+h1 {
+    width: 100%;
+    margin: 0px;
+    border-bottom: 1px solid #A3861C;
+}
+a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #FFFFFF;
+}
