@@ -1,0 +1,59 @@
+body {
+	text-align: center;
+	background: #72dd63;
+	margin: 0px;
+	font-family: Barlow;
+}
+header {
+	background: url(https://images.pexels.com/photos/255469/pexels-photo-255469.jpeg?auto=compress&cs=tinysrgb&w=2520&h=1500&dpr=1);
+	padding: 50px;
+	color: white;
+	font-size: 35px;
+	margin-bottom: 5px;
+}
+nav {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	background: #35A827;
+	padding: 5px 2px 2px 2px;
+}
+#maincontent {
+	padding: 0px 64px;
+}
+aside {
+	float: right;
+	margin: 10px 0px 0px 50px;
+}
+footer {
+	background: #1C5714;
+}
+footer a {
+	color: white;
+	font-weight: bold;
+	text-decoration: none;
+}
+footer {
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
+}
+section {
+	overflow: auto;
+}
+section p, section ul {
+	text-align: justify;
+	margin: 16px;
+}
+section.menuitem {
+	padding-right: 307px;
+}
+section.menuitem h1 {
+	text-align: left;
+	margin: 16px;
+	font-weight: normal;
+}
+section.menuitem aside {
+	float: left;
+	margin: 5px;
+}
