@@ -48,7 +48,7 @@ section p, section ul {
 section.menuitem {
 	padding-right: 307px;
 }
-section.menuitem h1 {
+section.menuitem h2 {
 	text-align: left;
 	margin: 16px;
 	font-weight: normal;
