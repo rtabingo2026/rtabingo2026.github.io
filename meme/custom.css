@@ -1,0 +1,10 @@
+.carousel-inner {
+	height: 500px;
+}
+.nav-long {
+	flex-direction: row;
+}
+.nav-long .nav-link {
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+}
