@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>PSHS Knowledge Hub - CLC</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://ff.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=VCT4pU8OYyQwtN2u7zGROjsTnZ_4Jo9H8446giieH3GbxTmZzgSszisBs_QLD5i78ZREUtqmPtqR96J-Hi8g-7tFQTcY3F3Kk62FSu9RCCC0pR-n_P2282ZW_kvoOrRF6aTMI_Ju1ZSFjtD85rUC6hUhVsEV5mdWv56t2VpWo67ZmaXsrEse9YxMVB5ZYaY7_DnVr_ZqwsvBkqj_ZBrhc9qXLOGX9Xn8tPoUY7SwmvHxx28na1bvh-QS8DochLtJMWSownCbj4MJyresfZRqBUruGjDfAKaFdkJubQrn8Z-vYj74oiif9ZClbh0HOxYRwxZaPzNi4DLW-TOe_-3NIPvLuPHl8fN6o5u4kDrnHuQRm35cLJ-GtxxD1dZsdLThfHx9MwuFpCaU9D--xf0tIlb34a1Q1z0lYpg-n58jIyAFLmizron6KPj3DfoD7_naeJNvkfJJvAm35uyzhJAq1ZJLw2GE7YMtibcKxSvon3FPoTaBKDf-Oi1tW8aYqOKf"></script><script src="https://ff.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=BOUi86qCsfyEtoOintEZN4KOYYfnxJr1WRnjcgqqRYpHn7zBKpMxFxoiGnp5douX7YwNpN8DmAq_MUripphHgSRdamnQe8ot6e4aXub3aC1zUhLRGCizO3y87SIrA-1HGIjCMjTveGkBG4_7EHIY7O_IRIhryuUgN3LL-_FLcRF1m2kBsoOLK9p88um5ebsVmO2Y_ThgEPD3N-Ez_VH89pqqH5_ssbny2Dhifz8caecH5-Np07R6slf-c-8r7r8tS83pve_hPBsKmqGAhU5i3cfBhFx__xvLgXSnYmhQLyfUp7ShNnFvTexShR5d8Lvu_naStcxSF-GkDw-Lic7aTgJ3fIdhyxUzx93UV9Qu5Tp2DCakegEZMbKd8I-spJdcGLEitaZOfj6WXMmHgwE5MIKR--MepT7SNe3B7mS9g2JCuC8KdhJUN4HvNpg0C6nk3GtQeqtxkC_-_1ElT2JSZELlnQWAtQid3ZhxCekxmZ9a0eRaweUtDAMqy6rkKcXlmI-iGMp23SkcDnpNGNanCA"></script><link rel="stylesheet" crossorigin="anonymous" href="https://ff.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9jZG4uZmJzYnguY29tL3YvdDU5LjI3MDgtMjEvMzI1MzEyODkwXzY1NTk2NDkxMjk0NjY2Nl8xNjc2NDQ1MDI4NTMwMjQwMjlfbi5odG1sL2luZGV4Lmh0bWw_X25jX2NhdD0xMTEmY2NiPTEtNyZfbmNfc2lkPTBjYWIxNCZfbmNfZXVpMj1BZUhmcTFOUVI4c3BBNTZwNURjMGxBVjMxQXRsQnIzT2xrUFVDMlVHdmM2V1ExdzVPUExPVTlhd3Q1Y1ROT1U2VVZ1YXFfVFVIam12SUtSelllVkczUHZiJl9uY19vaGM9QkNiNFJPTU12RXdBWF91M1BycSZ0bj1LZklLTWpXc0N5M25mYk9uJl9uY19odD1jZG4uZmJzYnguY29tJm9oPTAzX0FkUWt5RWh3WVEzOTBvWGN0QjFuNW55LWFoRWI4eTNnay0xRDFrQV9SVktFeHcmb2U9NjNDMzgyRkEmZGw9MQ"><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+		<link href="style.css" rel="stylesheet"> 
+		<style>
+			.collapsible {
+			  background-color: #3a7273;
+			  color: white;
+			  cursor: pointer;
+			  padding: 18px;
+			  width: 100%;
+			  border: none;
+			  text-align: left;
+			  outline: none;
+			  font-size: 15px;
+			}
+			
+			.content {
+			  padding: 0 18px;
+			  max-height: 0;
+			  overflow: hidden;
+			  transition: max-height 0.1s ease-out;
+			  background-color: #ffffff;
+
+			}
+			status{
+				background-color: rgb(93, 255, 93);
+			}
+		</style>
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg bg-white sticky-top" data-bs-theme="light" style="border-bottom: 2px solid #2b3d41">
+			<div class="container-fluid">
+				<a class="navbar-brand d-flex flex-row align-items-center" href="index.html">
+					<img class="d-flex me-2" src="khublogo.png" alt="khub logo">
+					<span class="d-flex">
+						Department of Science and Technology
+						<br>
+						PHILIPPINE SCIENCE HIGHSCHOOL
+						<br>
+						CENTRAL LUZON CAMPUS
+					</span>
+				</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarCollapse">
+					<ul class="navbar-nav nav-fill flex-fill me-4">
+						<li class="nav-item m-1">
+							<a class="nav-link" href="index.html">Home</a>
+						</li>
+						<li class="nav-item m-1">
+							<a class="nav-link" href="index.html">Dashboard</a>
+						</li>
+						<li class="nav-item m-1">
+							<a class="nav-link" href="index.html">Courses</a>
+						</li>
+						<li class="nav-item m-1 dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Socials</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="https://m.facebook.com/?paipv=0&eav=AfY1wIdboxKvbNmiRE9dxpQmu8nv4fkfmyYgYWhOKzZSjoKJ9ro7ZyKX53cG9cTZj_o&_rdr&tbua=1#!/pshsclc?eav=AfaUTOgWBK2Xb0yYZnaqTfYU8awV9vVR3Gbutjr5huhrUu9nztJKCGeec2IE4gqNns8&tsid=0.3006376375973152&source=result">CLC Facebook</a></li>
+								<li><a class="dropdown-item" href="https://m.facebook.com/?paipv=0&eav=AfY1wIdboxKvbNmiRE9dxpQmu8nv4fkfmyYgYWhOKzZSjoKJ9ro7ZyKX53cG9cTZj_o&_rdr&tbua=1#!/TheCentralScholarCLC?eav=AfY1aBIRVNmOXkt1oNOYHkjiVnK5vvSEzkt7FKHovR4pD08o2LdzYQKT3LEcpR6I0uw&tsid=0.37051164396595615&source=result">TCS Facebook</a></li>
+								<li><a class="dropdown-item" href="https://m.facebook.com/?paipv=0&eav=AfY1wIdboxKvbNmiRE9dxpQmu8nv4fkfmyYgYWhOKzZSjoKJ9ro7ZyKX53cG9cTZj_o&_rdr&tbua=1#!/BahaghariCLC?eav=AfYntVrYSEcE9R5X29_dSsGt0ETBpClBXj6JnuI8YThjk-ePiUSbrxoshclnCqdWPWg&fref=nf&ref=content_filter&paipv=0">Bahaghari Facebook</a></li>
+							</ul>
+						</li>
+					</ul>
+					<span class="align-self-center m-1">xxxx</span>
+					<span style="background-color: #95bcb6; width: 35px; height: 35px; border-radius: 35px;"></span>
+				</div>
+			</div>
+		</nav>
+		<button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar" style="position: fixed; right: 0; border-radius: 0; border-top-left-radius: 200px; border-bottom-left-radius: 200px;">
+			<img src="uncollapse.png" width="20" height="20" alt="Open sidebar">
+		</button>
+		<div class="offcanvas offcanvas-end" id="sidebar" style="background-color: #3a7273;">
+			<div class="offcanvas-header">
+				<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+			</div>
+			<div class="offcanvas-body text-center d-flex flex-column justify-content-evenly">
+				<div>
+					<a href="#"><img class="m-4 w-25" src="bell.png" alt="Notifications"></a>
+					<br>
+					<a href="#"><img class="m-4 w-25" src="messages.png" alt="Messages"></a>
+				</div>
+				<hr style="color: #2b3d41; opacity: 1; border-top-width: 2px;">
+				<a class="link-dark fs-1" href="#"><b>Upcoming Events</b></a>
+				<hr style="color: #2b3d41; opacity: 1; border-top-width: 2px;">
+				<a class="link-dark fs-1" href="#"><b>Navigation</b></a>
+			</div>
+		</div>
+		<div class = "container">
+			<h2>Computer Science <a class="btn btn-secondary" href="grades.html">See Grades</a></h2>
+			<button class="collapsible">1st Quarter</button>
+			<div class="content">
+				<div class="card m-4">
+					<h3 style="padding: 5px;"><b>Learning Guides</b></h3>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">
+							<div class="d-flex align-items-center">
+								<img class="m-2" src="submissionicon.png" alt="Module">
+								<div>
+									<p style="margin: 0%;">File</p>
+									<a href="quiz.html">SLG 1.0</a>
+									<br>
+								</div>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="d-flex align-items-center">
+								<img class="m-2" src="submissionicon.png" alt="Module">
+								<div>
+									<p style="margin: 0%;">File</p>
+									<a href="quiz.html">SLG 2.0</a>
+									<br>
+								</div>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="d-flex align-items-center">
+								<img class="m-2" src="submissionicon.png" alt="Module">
+								<div>
+									<p style="margin: 0%;">File</p>
+									<a href="quiz.html">SLG 3.0</a>
+									<br>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="card m-4">
+					<h3 style="padding: 5px;"><b>Formative Assessments</b></h3>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">
+							<div class="d-flex align-items-center">
+								<img class="m-2" src="submissionicon.png" alt="Submission">
+								<div>
+									<p style="margin: 0%;">Quiz</p>
+									<a href="quiz.html">FA1</a>
+									<br>
+								</div>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="d-flex align-items-center">
+								<img class="m-2" src="submissionicon.png" alt="Submission">
+								<div>
+									<p style="margin: 0%;">Assignment</p>
+									<a href="quiz.html">FA2</a>
+									<br>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="card m-4">
+					<h3 style="padding: 5px;"><b>Alternative Assessments</b></h3>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">
+							<div class="d-flex align-items-center">
+								<img class="m-2" src="submissionicon.png" alt="Submission">
+								<div>
+									<p style="margin: 0%;">Assignment</p>
+									<a href="quiz.html#">AA1</a>
+									<br>
+								</div>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="d-flex align-items-center">
+								<img class="m-2" src="submissionicon.png" alt="Submission">
+								<div>
+									<p style="margin: 0%;">Assignment</p>
+									<a href="quiz.html">AA2</a>
+									<br>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<button class="collapsible">2nd Quarter</button>
+			<div class="content">
+				<p></p>
+			</div>
+			<button class="collapsible">3rd Quarter</button>
+			<div class="content">
+				<p></p>
+			</div>
+			<button class="collapsible">4th quarter</button>
+			<div class="content">
+				<p></p>
+			</div>
+		</div>
+
+		<script>
+			var coll = document.getElementsByClassName("collapsible");
+			var i;
+			
+			for (i = 0; i < coll.length; i++) {
+			  coll[i].addEventListener("click", function() {
+				this.classList.toggle("active");
+				var content = this.nextElementSibling;
+				if (content.style.maxHeight){
+				  content.style.maxHeight = null;
+				} else {
+				  content.style.maxHeight = content.scrollHeight + "px";
+				} 
+			  });
+			}
+		</script>
+
+	</body>
+</html>
