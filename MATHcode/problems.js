@@ -227,7 +227,7 @@ const problem_sets = [
 				problemText: ["Write the answer as a decimal: ", Display.fraction(["5"], ["13"]), " \u00f7 ", Display.fraction(["−4"], ["39"])],
 				problemEquation: {left: {literal: new Rational.constructor(5n, 13n), __proto__: Equation.literal}, right: {literal: new Rational.constructor(-4n, 39n), __proto__: Equation.literal}, __proto__: Equation.division},
 				varsUsed: [],
-				onSolve: (eq) => (isRational(eq) && next_problem())
+				onSolve: (eq) => (isRational(eq) && finishProblemSet())
 			},
 			// If a = 21, b = −16, find 2a − (−b).
 		]
@@ -248,7 +248,7 @@ const problem_sets = [
 				problemText: ["What number is halfway between 3 - ", Display.fraction(["1"], ["3"]), " and 2 + ", Display.fraction(["4"], ["7"]), "?"],
 				problemEquation: {left: {left: {left: {literal: 3n, __proto__: Equation.literal}, right: {literal: new Rational.constructor(1n, 3n), __proto__: Equation.literal}, __proto__: Equation.subtraction}, right: {left: {literal: 2n, __proto__: Equation.literal}, right: {literal: new Rational.constructor(4n, 7n), __proto__: Equation.literal}, __proto__: Equation.addition}, __proto__: Equation.addition}, right: {literal: 2n, __proto__: Equation.literal}, __proto__: Equation.division},
 				varsUsed: [],
-				onSolve: (eq) => (isRational(eq) && next_problem())
+				onSolve: (eq) => (isRational(eq) && finishProblemSet())
 			}
 		]
 	}
