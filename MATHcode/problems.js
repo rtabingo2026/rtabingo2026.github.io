@@ -105,7 +105,7 @@ const finishProblemSet = () => {
 }
 
 const isInteger = (eq) => Equation.literal.isPrototypeOf(eq) || Equation.negate.isPrototypeOf(eq) && Equation.literal.isPrototypeOf(eq.inside);
-const isRational = (eq) => isInteger(eq) || Equation.division.isPrototypeOf(eq) && isInteger(eq.left) && isInteger(eq.right);
+const isRational = (eq) => isInteger(eq) || Equation.division.isPrototypeOf(eq) && isInteger(eq.left) && isInteger(eq.right) || Equation.negate.isPrototypeOf(eq) && Equation.division.isPrototypeOf(eq.inside) && isInteger(eq.inside.left) && isInteger(eq.inside.right);
 const countVariable = (eq, variable) => Equation.variable.isPrototypeOf(eq) ? Number(eq.name === variable) :
 	Equation.addition.isPrototypeOf(eq) || Equation.subtraction.isPrototypeOf(eq) || Equation.multiplication.isPrototypeOf(eq) || Equation.division.isPrototypeOf(eq) ? countVariable(eq.left, variable) + countVariable(eq.right, variable) :
 	Equation.exp.isPrototypeOf(eq) ? countVariable(eq.base, variable) + countVariable(eq.power, variable) :
@@ -113,7 +113,7 @@ const countVariable = (eq, variable) => Equation.variable.isPrototypeOf(eq) ? Nu
 
 const problem_sets = [
 	{
-		name: "MTAP 2016",
+		name: "MTAP Training 2016",
 		problems: [
 			{
 				__proto__: Problem,
@@ -202,6 +202,53 @@ const problem_sets = [
 				problemEquation: {left: {left: {left: {left: {literal: 3n, __proto__: Equation.literal}, right: {name: "x", __proto__: Equation.variable}, __proto__: Equation.multiplication}, right: {literal: 5n, __proto__: Equation.literal}, __proto__: Equation.subtraction}, right: {left: {name: "x", __proto__: Equation.variable}, right: {literal: 2n, __proto__: Equation.literal}, __proto__: Equation.addition}, __proto__: Equation.multiplication}, right: {left: {left: {name: "x", __proto__: Equation.variable}, right: {literal: 4n, __proto__: Equation.literal}, __proto__: Equation.addition}, right: {left: {left: {literal: 2n, __proto__: Equation.literal}, right: {name: "x", __proto__: Equation.variable}, __proto__: Equation.multiplication}, right: {literal: 1n, __proto__: Equation.literal}, __proto__: Equation.subtraction}, __proto__: Equation.multiplication}, __proto__: Equation.subtraction},
 				varsUsed: ["x"],
 				onSolve: (eq) => (countVariable(eq, "x") === 2 && finishProblemSet())
+			}
+		]
+	},
+	{
+		name: "MTAP Training 2017",
+		problems: [
+			{
+				__proto__: Problem,
+				problemText: ["Give the rational number that is midway between −", Display.fraction(["3"], ["4"]), " and ", Display.fraction(["7"], ["8"]), "."],
+				problemEquation: {left: {left: {inside: {literal: new Rational.constructor(3n, 4n), __proto__: Equation.literal}, __proto__: Equation.negate}, right: {literal: new Rational.constructor(7n, 8n), __proto__: Equation.literal}, __proto__: Equation.addition}, right: {literal: 2n, __proto__: Equation.literal}, __proto__: Equation.division},
+				varsUsed: [],
+				onSolve: (eq) => (isRational(eq) && next_problem())
+			},
+			{
+				__proto__: Problem,
+				problemText: ["Ana walks ", Display.fraction(["2"], ["3"]), " km due west, then turns back and walks ", Display.fraction(["10"], ["7"]), " km due east. How far is Ana from her starting point?"],
+				problemEquation: {left: {inside: {literal: new Rational.constructor(2n, 3n), __proto__: Equation.literal}, __proto__: Equation.negate}, right: {literal: new Rational.constructor(10n, 7n), __proto__: Equation.literal}, __proto__: Equation.addition},
+				varsUsed: [],
+				onSolve: (eq) => (isRational(eq) && next_problem())
+			},
+			{
+				__proto__: Problem,
+				problemText: ["Write the answer as a decimal: ", Display.fraction(["5"], ["13"]), " \u00f7 ", Display.fraction(["−4"], ["39"])],
+				problemEquation: {left: {literal: new Rational.constructor(5n, 13n), __proto__: Equation.literal}, right: {literal: new Rational.constructor(-4n, 39n), __proto__: Equation.literal}, __proto__: Equation.division},
+				varsUsed: [],
+				onSolve: (eq) => (isRational(eq) && next_problem())
+			},
+			// If a = 21, b = −16, find 2a − (−b).
+		]
+	},
+	{
+		name: "MTAP Training 2018",
+		problems: [
+			// In a Senior high school, 35% of the students are girls. If there are 300 fewer girls than boys, find the total number of students in the school.
+			{
+				__proto__: Problem,
+				problemText: ["If the length of a rectangle is increased by 30% and the width is decreased by 20%, find the percentage by which its area changes."],
+				problemEquation: {left: {left: {left: {left: {left: {name: "L", __proto__: Equation.variable}, right: {left: {literal: new Rational.constructor(30n, 100n), __proto__: Equation.literal}, right: {name: "L", __proto__: Equation.variable}, __proto__: Equation.multiplication}, __proto__: Equation.addition}, right: {left: {name: "W", __proto__: Equation.variable}, right: {left: {literal: new Rational.constructor(20n, 100n), __proto__: Equation.literal}, right: {name: "W", __proto__: Equation.variable}, __proto__: Equation.multiplication}, __proto__: Equation.subtraction}, __proto__: Equation.multiplication}, right: {left: {name: "L", __proto__: Equation.variable}, right: {name: "W", __proto__: Equation.variable}, __proto__: Equation.multiplication}, __proto__: Equation.subtraction}, right: {left: {name: "L", __proto__: Equation.variable}, right: {name: "W", __proto__: Equation.variable}, __proto__: Equation.multiplication}, __proto__: Equation.division}, right: {literal: 100n, __proto__: Equation.literal}, __proto__: Equation.multiplication},
+				varsUsed: ["L", "W"],
+				onSolve: (eq) => (isInteger(eq) && next_problem())
+			},
+			{
+				__proto__: Problem,
+				problemText: ["What number is halfway between 3 - ", Display.fraction(["1"], ["3"]), " and 2 + ", Display.fraction(["4"], ["7"]), "?"],
+				problemEquation: {left: {left: {left: {literal: 3n, __proto__: Equation.literal}, right: {literal: new Rational.constructor(1n, 3n), __proto__: Equation.literal}, __proto__: Equation.subtraction}, right: {left: {literal: 2n, __proto__: Equation.literal}, right: {literal: new Rational.constructor(4n, 7n), __proto__: Equation.literal}, __proto__: Equation.addition}, __proto__: Equation.addition}, right: {literal: 2n, __proto__: Equation.literal}, __proto__: Equation.division},
+				varsUsed: [],
+				onSolve: (eq) => (isRational(eq) && next_problem())
 			}
 		]
 	}

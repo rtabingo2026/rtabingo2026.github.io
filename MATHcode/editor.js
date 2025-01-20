@@ -92,9 +92,7 @@ const Editor = {
 					if (Equation.placeholder.isPrototypeOf(selectedInEquation)) {
 						Object.setPrototypeOf(selectedInEquation, Equation.variable);
 						selectedInEquation.name = event.key;
-					} else if (Equation.variable.isPrototypeOf(selectedInEquation)) {
-						selectedInEquation.name += event.key;
-					} else if (Equation.literal.isPrototypeOf(selectedInEquation)) {
+					} else if (Equation.variable.isPrototypeOf(selectedInEquation) || Equation.literal.isPrototypeOf(selectedInEquation)) {
 						const newOperation = {__proto__: Equation.multiplication, left: selectedInEquation, right: {name: event.key, __proto__: Equation.variable}, parent: selectedInEquation.parent};
 						if (selectedInEquation.parent) {
 							newOperation.role = selectedInEquation.role;

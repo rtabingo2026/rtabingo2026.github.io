@@ -11,8 +11,8 @@ const Rational = {
 		if (this.isNaN()) return;
 		let a = this.numerator, b = this.denominator;
 		while (b !== 0n) [a, b] = [b, a % b];
-		this.numerator /= a < 0n ? -a : a;
-		this.denominator /= a < 0n ? -a : a;
+		this.numerator /= this.denominator * a < 0 ? -a : a;
+		this.denominator /= this.denominator * a < 0 ? -a : a;
 	},
 
 	add(other) {
