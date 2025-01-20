@@ -81,8 +81,8 @@ const finishProblemSet = () => {
 		const scoreTableTimeCells = [document.createElement("th"), document.createElement("td"), document.createElement("td")];
 		scoreTableTimeCells[0].setAttribute("scope", "row");
 		scoreTableTimeCells[0].append("Time");
-		scoreTableTimeCells[1].append(localStorage.getItem(problemSet.name) ? `${JSON.parse(localStorage.getItem(problemSet.name)).first.time.toFixed(1)}s` : "--");
-		scoreTableTimeCells[2].append(localStorage.getItem(problemSet.name) ? `${JSON.parse(localStorage.getItem(problemSet.name)).best.time.toFixed(1)}s` : "--");
+		scoreTableTimeCells[1].append(localStorage.getItem(problemSet.name) ? `${(JSON.parse(localStorage.getItem(problemSet.name)).first.time/1000).toFixed(1)}s` : "--");
+		scoreTableTimeCells[2].append(localStorage.getItem(problemSet.name) ? `${(JSON.parse(localStorage.getItem(problemSet.name)).best.time/1000).toFixed(1)}s` : "--");
 		scoreTableTimeRow.append(...scoreTableTimeCells);
 		const scoreTableStepsRow = document.createElement("tr");
 		const scoreTableStepsCells = [document.createElement("th"), document.createElement("td"), document.createElement("td")];

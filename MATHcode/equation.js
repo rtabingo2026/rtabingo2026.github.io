@@ -53,7 +53,7 @@ const Equation = {
 		},
 		display(considerParenthesizing) {
 			const defaultDisplay = Equation.variable.isPrototypeOf(this.right) ?
-				[...this.left.display(true), ...this.right.display()]
+				[...(Equation.exp.isPrototypeOf(this.parent) ? ["("] : []), ...this.left.display(true), ...this.right.display(), ...(Equation.exp.isPrototypeOf(this.parent) ? [")"] : [])]
 			:
 				[...(considerParenthesizing ? ["("] : []), ...this.left.display(true), "\u00b7", ...this.right.display(true), ...(considerParenthesizing ? [")"] : [])];
 			return this.selected ? [Display.selected(defaultDisplay)] : defaultDisplay;
