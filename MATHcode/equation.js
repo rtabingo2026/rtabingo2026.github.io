@@ -24,8 +24,16 @@ const Equation = {
 			return Rational.nan;
 		},
 		display(considerParenthesizing) {
-			const defaultDisplay = ["?"];
+			const defaultDisplay = ["..."];
 			return this.selected ? [Display.selected(defaultDisplay)] : defaultDisplay;
+		}
+	},
+	concealed: {
+		evaluate(vars) {
+			return this.inside.evaluate();
+		},
+		dispay(considerParenthesizing) {
+			return ["???"];
 		}
 	},
 

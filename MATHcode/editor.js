@@ -5,13 +5,13 @@ window.Display = Display;
 
 const blankEquation = () => {return {__proto__: Equation.placeholder, parent: null, selected: true}};
 const Editor = {
-	createEditor(equation, onSolve, varsUsed) {
+	createEditor(equation, onSolve, freeVars, boundVars) {
 		const editorElement = document.createElement("div");
 		editorElement.classList.add("problem-editor");
 		editorElement.tabIndex = -1;
 		window.selectedInEquation = blankEquation();
 		window.editorEquations = [equation, selectedInEquation];
-		window.varsUsed = varsUsed;
+		window.freeVars = freeVars;
 		editorElement.addEventListener("keydown", (event) => {
 			if (event.defaultPrevented) {
 				return;
@@ -320,7 +320,8 @@ const Editor = {
 				case "Enter":
 				case "=": 
 					const vars = new Map();
-					varsUsed.forEach((varName) => vars.set(varName, BigInt(Math.random() * 2**53)))
+					freeVars.forEach((varName) => vars.set(varName, BigInt(Math.random() * 2**53)));
+					Object.entries(boundVars).forEach((varPair) => vars.set(varPair[0], varPair[1]));
 					if (editorEquations.at(-2).evaluate(vars).equals(editorEquations.at(-1).evaluate(vars)) && (document.querySelector("#steps").innerText = `Steps: ${++window.stepCount}`) && !onSolve(editorEquations.at(-1))) {
 						delete selectedInEquation.selected;
 						selectedInEquation = blankEquation();
