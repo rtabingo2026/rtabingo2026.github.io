@@ -32,7 +32,7 @@ const Equation = {
 		evaluate(vars) {
 			return this.inside.evaluate();
 		},
-		dispay(considerParenthesizing) {
+		display(considerParenthesizing) {
 			return ["???"];
 		}
 	},
