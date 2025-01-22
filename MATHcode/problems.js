@@ -33,11 +33,12 @@ const loadProblemSet = (problemSet) => {
 	}, 1)
 	window.stepCount = 0;
 	document.querySelector("#problem-sets").classList.replace("d-flex", "d-none");
+	document.querySelector("#back").onclick = () => finishProblemSet(false)
 	next_problem();
 }
 
-const finishProblemSet = () => {
-	if (window.currentProblemSetName) {
+const finishProblemSet = (saveTime) => {
+	if (saveTime && window.currentProblemSetName) {
 		const currentSaved = JSON.parse(localStorage.getItem(window.currentProblemSetName)) ?? {first: {time: Date.now() - window.startTime, steps: window.stepCount}, best: {time: Date.now() - window.startTime, steps: window.stepCount}}
 		if (window.timer) clearInterval(window.timer);
 		if (Date.now() - window.startTime < currentSaved.best.time) currentSaved.best.time = Date.now() - window.startTime;
@@ -112,6 +113,27 @@ const countVariable = (eq, variable) => Equation.variable.isPrototypeOf(eq) ? Nu
 	Equation.parens.isPrototypeOf(eq) || Equation.negate.isPrototypeOf(eq) ? countVariable(eq.inside, variable) : 0
 
 const problem_sets = [
+	{
+		name: "Trial",
+		problems: [
+			{
+				__proto__: Problem,
+				problemText: ["Simplify: (1 + 1) \u00b7 (1 + 1)"],
+				problemEquation: {left: {left: {literal: 1n, __proto__: Equation.literal}, right: {literal: 1n, __proto__: Equation.literal}, __proto__: Equation.addition}, right: {left: {literal: 1n, __proto__: Equation.literal}, right: {literal: 1n, __proto__: Equation.literal}, __proto__: Equation.addition}, __proto__: Equation.multiplication},
+				freeVars: [],
+				boundVars: {},
+				onSolve: (eq) => (isInteger(eq) && next_problem())
+			},
+			{
+				__proto__: Problem,
+				problemText: ["Simplify: ", Display.fraction(["x", Display.superscript("2"), " - 1"], ["x - 1"])],
+				problemEquation: {left: {left: {base: {name: "x", __proto__: Equation.variable}, power: {literal: 2n, __proto__: Equation.literal}, __proto__: Equation.exp}, right: {literal: 1n, __proto__: Equation.literal}, __proto__: Equation.subtraction}, right: {left: {name: "x", __proto__: Equation.variable}, right: {literal: 1n, __proto__: Equation.literal}, __proto__: Equation.subtraction}, __proto__: Equation.division},
+				freeVars: ["x"],
+				boundVars: {},
+				onSolve: (eq) => (countVariable(eq, "x") === 1 && finishProblemSet(true))
+			}
+		]
+	},
 	{
 		name: "MTAP Training 2016",
 		problems: [
@@ -212,7 +234,7 @@ const problem_sets = [
 				problemEquation: {left: {left: {left: {left: {literal: 3n, __proto__: Equation.literal}, right: {name: "x", __proto__: Equation.variable}, __proto__: Equation.multiplication}, right: {literal: 5n, __proto__: Equation.literal}, __proto__: Equation.subtraction}, right: {left: {name: "x", __proto__: Equation.variable}, right: {literal: 2n, __proto__: Equation.literal}, __proto__: Equation.addition}, __proto__: Equation.multiplication}, right: {left: {left: {name: "x", __proto__: Equation.variable}, right: {literal: 4n, __proto__: Equation.literal}, __proto__: Equation.addition}, right: {left: {left: {literal: 2n, __proto__: Equation.literal}, right: {name: "x", __proto__: Equation.variable}, __proto__: Equation.multiplication}, right: {literal: 1n, __proto__: Equation.literal}, __proto__: Equation.subtraction}, __proto__: Equation.multiplication}, __proto__: Equation.subtraction},
 				freeVars: ["x"],
 				boundVars: {},
-				onSolve: (eq) => (countVariable(eq, "x") === 2 && finishProblemSet())
+				onSolve: (eq) => (countVariable(eq, "x") === 2 && finishProblemSet(true))
 			}
 		]
 	},
@@ -249,7 +271,7 @@ const problem_sets = [
 				problemEquation: {left: {left: {literal: 2n, __proto__: Equation.literal}, right: {name: "a", __proto__: Equation.variable}, __proto__: Equation.multiplication}, right: {inside: {name: "b", __proto__: Equation.variable}, __proto__: Equation.negate}, __proto__: Equation.subtraction},
 				freeVars: [],
 				boundVars: {a: 21n, b: -16n},
-				onSolve: (eq) => (isInteger(eq) && finishProblemSet())
+				onSolve: (eq) => (isInteger(eq) && finishProblemSet(true))
 			},
 		]
 	},
@@ -279,7 +301,7 @@ const problem_sets = [
 				problemEquation: {left: {left: {left: {literal: 3n, __proto__: Equation.literal}, right: {literal: new Rational.constructor(1n, 3n), __proto__: Equation.literal}, __proto__: Equation.subtraction}, right: {left: {literal: 2n, __proto__: Equation.literal}, right: {literal: new Rational.constructor(4n, 7n), __proto__: Equation.literal}, __proto__: Equation.addition}, __proto__: Equation.addition}, right: {literal: 2n, __proto__: Equation.literal}, __proto__: Equation.division},
 				freeVars: [],
 				boundVars: {},
-				onSolve: (eq) => (isRational(eq) && finishProblemSet())
+				onSolve: (eq) => (isRational(eq) && finishProblemSet(true))
 			}
 		]
 	},
@@ -306,11 +328,11 @@ const problem_sets = [
 			// Subtract 3(−x^2 + 6xy − 4) − 2y^2 + 9 from 12 − 2y(y − 9x) + x^2.
 			{
 				__proto__: Problem,
-				problemText: ["Find the product (x − 2y + z) (x + 2y − z)."],
-				problemEquation: {left: {left: {left: {name: "x", __proto__: Equation.variable}, right: {left: {literal: 2n, __proto__: Equation.literal}, right: {name: "y", __proto__: Equation.variable}, __proto__: Equation.multiplication}, __proto__: Equation.subtraction}, right: {name: "z", __proto__: Equation.variable}, __proto__: Equation.addition}, right: {left: {left: {name: "x", __proto__: Equation.variable}, right: {left: {literal: 2n, __proto__: Equation.literal}, right: {name: "y", __proto__: Equation.variable}, __proto__: Equation.multiplication}, __proto__: Equation.addition}, right: {name: "z", __proto__: Equation.variable}, __proto__: Equation.subtraction}, __proto__: Equation.multiplication},
-				freeVars: ["x", "y", "z"],
-				boundVars: {},
-				onSolve: (eq) => (countVariable(eq, "x") === 1 && countVariable(eq, "y") === 2 && countVariable(eq, "z") === 2 && next_problem())
+				problemText: ["If x + y = 7 and xy = 10, what is the value of x", Display.superscript("2"), " + y", Display.superscript("2"), "?"],
+				problemEquation: {left: {base: {name: "x", __proto__: Equation.variable}, power: {literal: 2n, __proto__: Equation.literal}, __proto__: Equation.exp}, right: {base: {name: "y", __proto__: Equation.variable}, power: {literal: 2n, __proto__: Equation.literal}, __proto__: Equation.exp}, __proto__: Equation.addition},
+				freeVars: [],
+				boundVars: {x: 2n, y: 5n},
+				onSolve: (eq) => (isInteger(eq) && next_problem())
 			},
 			// What is the value of x^2 − x + 1/x if x = 1/2?
 			{
@@ -319,9 +341,8 @@ const problem_sets = [
 				problemEquation: {left: {base: {left: {base: {name: "x", __proto__: Equation.variable}, power: {literal: 3n, __proto__: Equation.literal}, __proto__: Equation.exp}, right: {literal: 1n, __proto__: Equation.literal}, __proto__: Equation.addition}, power: {literal: -1n, __proto__: Equation.literal}, __proto__: Equation.exp}, right: {base: {left: {base: {name: "x", __proto__: Equation.variable}, power: {literal: -3n, __proto__: Equation.literal}, __proto__: Equation.exp}, right: {literal: 1n, __proto__: Equation.literal}, __proto__: Equation.addition}, power: {literal: -1n, __proto__: Equation.literal}, __proto__: Equation.exp}, __proto__: Equation.addition},
 				freeVars: ["x"],
 				boundVars: {},
-				onSolve: (eq) => (isInteger(eq) && finishProblemSet())
-			},
-			// If x + y = 7 and xy = 10, what is the value of x2 + y2?
+				onSolve: (eq) => (isInteger(eq) && finishProblemSet(true))
+			}
 		]
 	}
 ];
