@@ -18,35 +18,49 @@ const Problem = {
 const next_problem = () => {
 	const next = currentProblemSet.next();
 	if (next.done) return true;
-	next.value.loadProblem(document.querySelector("#problem"));
+	window.currentProblemIndex = next.value[0];
+	next.value[1].loadProblem(document.querySelector("#problem"));
 	document.querySelector(".problem-editor").focus();
 	return true;
 };
 
 const loadProblemSet = (problemSet) => {
 	window.currentProblemSetName = problemSet.name;
-	window.currentProblemSet = problemSet.problems.values();
+	const currentSaved = JSON.parse(localStorage.getItem(window.currentProblemSetName)) ?? {};
+	currentSaved.running ??= {};
+	window.currentProblemSet = problemSet.problems.entries().drop(currentSaved.running.problemIndex ?? 0);
 	document.querySelector("#score").classList.replace("d-none", "d-flex");
-	window.startTime = Date.now();
+	window.startTime = Date.now() - (currentSaved.running.time ?? 0);
 	window.timer = setInterval(() => {
 		document.querySelector("#time").innerText = `Time: ${((Date.now() - window.startTime)/1000).toFixed(1)}s`;
 	}, 1)
-	window.stepCount = 0;
+	window.stepCount = currentSaved.running.steps ?? 0;
 	document.querySelector("#problem-sets").classList.replace("d-flex", "d-none");
-	document.querySelector("#back").onclick = () => finishProblemSet(false)
+	document.querySelector("#back").onclick = () => finishProblemSet(false);
+	currentProblemSet;
 	next_problem();
 }
 
-const finishProblemSet = (saveTime) => {
-	if (saveTime && window.currentProblemSetName) {
-		const currentSaved = JSON.parse(localStorage.getItem(window.currentProblemSetName)) ?? {first: {time: Date.now() - window.startTime, steps: window.stepCount}, best: {time: Date.now() - window.startTime, steps: window.stepCount}}
+const finishProblemSet = (saveScore) => {
+	if (saveScore && window.currentProblemSetName) {
+		const currentSaved = JSON.parse(localStorage.getItem(window.currentProblemSetName)) ?? {first: {time: Date.now() - window.startTime, steps: window.stepCount}, best: {time: Date.now() - window.startTime, steps: window.stepCount}};
+		delete currentSaved.running;
 		if (window.timer) clearInterval(window.timer);
 		if (Date.now() - window.startTime < currentSaved.best.time) currentSaved.best.time = Date.now() - window.startTime;
 		if (window.stepCount < currentSaved.best.steps) currentSaved.best.steps = window.stepCount;
 		localStorage.setItem(window.currentProblemSetName, JSON.stringify(currentSaved));
+	} else {
+		const currentSaved = JSON.parse(localStorage.getItem(window.currentProblemSetName)) ?? {};
+		if (window.timer) clearInterval(window.timer);
+		currentSaved.running ??= {};
+		currentSaved.running.problemIndex = window.currentProblemIndex;
+		currentSaved.running.time = Date.now() - window.startTime;
+		currentSaved.running.steps = window.stepCount;
+		localStorage.setItem(window.currentProblemSetName, JSON.stringify(currentSaved));
 	}
 	window.currentProblemSet = null;
 	window.currentProblemSetName = null;
+	window.currentProblemIndex = null;
 	document.querySelector("#score").classList.replace("d-flex", "d-none");
 	document.querySelector("#problem-sets").classList.replace("d-none", "d-flex");
 	document.querySelector("#problem").innerHTML = ""
@@ -82,22 +96,23 @@ const finishProblemSet = (saveTime) => {
 		const scoreTableTimeCells = [document.createElement("th"), document.createElement("td"), document.createElement("td")];
 		scoreTableTimeCells[0].setAttribute("scope", "row");
 		scoreTableTimeCells[0].append("Time");
-		scoreTableTimeCells[1].append(localStorage.getItem(problemSet.name) ? `${(JSON.parse(localStorage.getItem(problemSet.name)).first.time/1000).toFixed(1)}s` : "--");
-		scoreTableTimeCells[2].append(localStorage.getItem(problemSet.name) ? `${(JSON.parse(localStorage.getItem(problemSet.name)).best.time/1000).toFixed(1)}s` : "--");
+		scoreTableTimeCells[1].append(JSON.parse(localStorage.getItem(problemSet.name))?.first ? `${(JSON.parse(localStorage.getItem(problemSet.name)).first.time/1000).toFixed(1)}s` : "--");
+		scoreTableTimeCells[2].append(JSON.parse(localStorage.getItem(problemSet.name))?.best ? `${(JSON.parse(localStorage.getItem(problemSet.name)).best.time/1000).toFixed(1)}s` : "--");
 		scoreTableTimeRow.append(...scoreTableTimeCells);
 		const scoreTableStepsRow = document.createElement("tr");
 		const scoreTableStepsCells = [document.createElement("th"), document.createElement("td"), document.createElement("td")];
 		scoreTableStepsCells[0].setAttribute("scope", "row");
 		scoreTableStepsCells[0].append("Steps");
-		scoreTableStepsCells[1].append(localStorage.getItem(problemSet.name) ? `${JSON.parse(localStorage.getItem(problemSet.name)).first.steps}` : "--");
-		scoreTableStepsCells[2].append(localStorage.getItem(problemSet.name) ? `${JSON.parse(localStorage.getItem(problemSet.name)).best.steps}` : "--");
+		scoreTableStepsCells[1].append(JSON.parse(localStorage.getItem(problemSet.name))?.first ? `${JSON.parse(localStorage.getItem(problemSet.name)).first.steps}` : "--");
+		scoreTableStepsCells[2].append(JSON.parse(localStorage.getItem(problemSet.name))?.best ? `${JSON.parse(localStorage.getItem(problemSet.name)).best.steps}` : "--");
 		scoreTableStepsRow.append(...scoreTableStepsCells);
 		scoreTableBody.append(scoreTableTimeRow, scoreTableStepsRow);
 		problemSetScores.append(scoreTableHead, scoreTableBody);
+		const hasOngoing = JSON.parse(localStorage.getItem(problemSet.name))?.running;
 		const problemSetButton = document.createElement("a")
-		problemSetButton.classList.add("d-block", "btn", "btn-success", "mx-auto");
+		problemSetButton.classList.add("d-block", "btn", hasOngoing ? "btn-warning" : "btn-success", "mx-auto");
 		problemSetButton.onclick = () => {loadProblemSet(problemSet)};
-		problemSetButton.append("Start");
+		problemSetButton.append(hasOngoing ? "Continue" : "Start");
 		cardBody.append(problemSetTitle, problemSetLength, problemSetScores, problemSetButton);
 		card.append(cardBody);
 		column.append(card);
