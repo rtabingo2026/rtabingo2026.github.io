@@ -43,7 +43,9 @@ const loadProblemSet = (problemSet) => {
 
 const finishProblemSet = (saveScore) => {
 	if (saveScore && window.currentProblemSetName) {
-		const currentSaved = JSON.parse(localStorage.getItem(window.currentProblemSetName)) ?? {first: {time: Date.now() - window.startTime, steps: window.stepCount}, best: {time: Date.now() - window.startTime, steps: window.stepCount}};
+		const currentSaved = JSON.parse(localStorage.getItem(window.currentProblemSetName)) ?? {};
+		currentSaved.first ??= {time: Date.now() - window.startTime, steps: window.stepCount};
+		currentSaved.best ??= {time: Date.now() - window.startTime, steps: window.stepCount};
 		delete currentSaved.running;
 		if (window.timer) clearInterval(window.timer);
 		if (Date.now() - window.startTime < currentSaved.best.time) currentSaved.best.time = Date.now() - window.startTime;
